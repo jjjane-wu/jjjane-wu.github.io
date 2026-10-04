@@ -16,7 +16,7 @@ Inside a bullet, `**text**` renders bold and `==text==` renders as a highlight.
 
 ## Resume PDF
 
-Save the PDF as `public/Jane-Wu-Resume.pdf`. The download button on `/resume` appears once the file exists.
+The PDF lives at `public/Jane-Wu-Resume.pdf`; replace that file to update it. `/resume` offers it for download and viewing.
 
 ## Deploy
 

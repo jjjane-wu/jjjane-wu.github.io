@@ -1,10 +1,14 @@
 // All site copy lives here. Bullets follow the DS resume.
 // Inline markup: **bold** for emphasis, ==highlight== for the headline number.
 
+import type { LogoKey } from "@/components/Logo";
+
 export type Link = { label: string; href: string };
 
 export type Role = {
   slug: string;
+  // Key into the marks in components/Logo.tsx; null falls back to initials.
+  logo: LogoKey | null;
   company: string;
   short: string;
   title: string;
@@ -13,6 +17,8 @@ export type Role = {
   gist: string;
   tags: string[];
   bullets: string[];
+  // Shown on the site but left off the one-page resume.
+  siteOnly?: boolean;
 };
 
 export type Work = {
@@ -23,21 +29,24 @@ export type Work = {
   metric: string;
   tags: string[];
   links: Link[];
+  // Shown where a link would be, for code that exists but is not public.
+  note?: string;
   bullets: string[];
 };
 
 export const profile = {
   name: "Jane Wu",
   role: "Data scientist",
-  location: "Pittsburgh, PA",
+  school: "Carnegie Mellon University",
   email: "wujane001@gmail.com",
   linkedin: "https://www.linkedin.com/in/janewu-zichu-wu/",
   github: "https://github.com/jjjane-wu",
   statement:
-    "I build ML and LLM systems, and I measure whether they actually work.",
+    "I build agents and ML systems with an AI-native mindset, measure their trade-offs, and put them into practice.",
   about: [
     "I'm finishing a Master of Information Systems Management at Carnegie Mellon in December 2026, where I'm also a teaching assistant for the A/B Testing course. Before that I studied business and finance with a minor in mathematics at NYU.",
-    "My internships cover most of what a data science project needs: fine-tuning and retrieval for an LLM classifier at Xiaomi, modeling and experiment readouts for TikTok's livestream commerce, a due-diligence assistant for the UN pension fund's private-equity team, and factor back-testing at a quant fund.",
+    "My internships cover most of what a data science project needs: fine-tuning and retrieval for an LLM classifier at Xiaomi, modeling and experiment readouts for TikTok's livestream commerce, a multi-agent due-diligence assistant for the UN pension fund's private-equity team, and factor back-testing at a quant fund.",
+    "Outside of work, I love diving.",
   ],
 };
 
@@ -49,29 +58,18 @@ export const nav: Link[] = [
   { label: "Contact", href: "/contact/" },
 ];
 
-export const heroStats = [
-  { value: "0.88 F1", label: "42-class LLM classifier, 57% over BERT" },
-  { value: "10–29%", label: "Revenue growth on SKUs a LightGBM model flagged" },
-  { value: "~1 min", label: "For return metrics that took analysts hours" },
-];
-
-export const heroFoot = [
-  "MS, Carnegie Mellon · Dec 2026",
-  "Pittsburgh, PA",
-  "TikTok · UNJSPF · Xiaomi · LianHai",
-];
-
 export const focus = [
-  "Recommender systems",
+  "AI agents",
   "LLM systems",
+  "Recommender systems",
   "Experimentation",
   "Production ML",
-  "Forecasting",
 ];
 
 export const experience: Role[] = [
   {
     slug: "unjspf",
+    logo: "unitednations",
     company: "United Nations Joint Staff Pension Fund",
     short: "UNJSPF",
     title: "Data Scientist Intern",
@@ -86,6 +84,7 @@ export const experience: Role[] = [
   },
   {
     slug: "tiktok",
+    logo: "tiktok",
     company: "TikTok",
     short: "TikTok",
     title: "Product Data Scientist Intern",
@@ -102,6 +101,7 @@ export const experience: Role[] = [
   },
   {
     slug: "xiaomi",
+    logo: "xiaomi",
     company: "Xiaomi",
     short: "Xiaomi",
     title: "Data Scientist Intern",
@@ -117,6 +117,7 @@ export const experience: Role[] = [
   },
   {
     slug: "lianhai",
+    logo: null,
     company: "LianHai Capital Asset Management",
     short: "LianHai",
     title: "Sector Data Scientist Intern",
@@ -128,11 +129,37 @@ export const experience: Role[] = [
       "Built a **factor back-testing framework** on ==~5,000 A-shares== (2015–2024) using daily **constrained cross-sectional regressions** for industry baselines, decile sorts and IC/IR, and automated a daily 9-factor review for portfolio managers",
     ],
   },
+  {
+    slug: "ey",
+    logo: "ey",
+    company: "Ernst & Young",
+    short: "EY",
+    title: "Business Analyst Intern",
+    dates: "May 2023 – Aug 2023",
+    location: "Shanghai, China",
+    gist: "SOX risk scoring for 500+ control points and founder-interview synthesis for a client's IPO due diligence.",
+    tags: ["Excel", "SOX compliance", "Due diligence"],
+    bullets: [
+      "Automated **SOX risk scoring** for ==500+ control points== in Excel (pivot tables, VLOOKUP) and modeled cost-reduction scenarios from client sales data",
+      "Synthesized **10+ founder interviews** into findings supporting a client's IPO due-diligence assessment",
+    ],
+    siteOnly: true,
+  },
 ];
 
-export const education = [
+export const education: {
+  school: string;
+  short: string;
+  logo: LogoKey;
+  degree: string;
+  dates: string;
+  location: string;
+  note: string;
+}[] = [
   {
     school: "Carnegie Mellon University",
+    short: "CMU",
+    logo: "cmu",
     degree: "Master of Information Systems Management (GPA: 3.9/4.0)",
     dates: "Aug 2024 – Dec 2026",
     location: "Pittsburgh, PA",
@@ -140,6 +167,8 @@ export const education = [
   },
   {
     school: "New York University",
+    short: "NYU",
+    logo: "nyu",
     degree:
       "Bachelor of Science, Business and Finance, Minor in Mathematics (GPA: 3.8/4.0)",
     dates: "Sep 2020 – May 2024",
@@ -157,6 +186,7 @@ export const projects: Work[] = [
     metric: "0.21 ms p95",
     tags: ["Kafka", "Docker", "GitHub Actions", "Prometheus", "Grafana"],
     links: [],
+    note: "Code in a private CMU course repository",
     bullets: [
       "Deployed a real-time recommendation API on live **Kafka** traffic with fallback routing that answers every request, at ==0.21 ms p95== model latency (600 ms budget)",
       "Built **CI/CD** (GitHub Actions, **Docker**, 56 tests per PR, automated retraining) and deployed **Prometheus and Grafana** monitoring",

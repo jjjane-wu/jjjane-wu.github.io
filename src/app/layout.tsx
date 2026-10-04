@@ -1,31 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Instrument_Serif, JetBrains_Mono } from "next/font/google";
-import { Footer, Nav } from "@/components/Chrome";
+import { Figtree, Fraunces } from "next/font/google";
+import { Bubbles, DepthGauge, Footer, Nav } from "@/components/Chrome";
 import "./globals.css";
 
-// Archivo's width axis gives both the condensed row titles and the expanded hero letters.
-const archivo = Archivo({
+// Fraunces with its SOFT axis turned up for headings; Figtree for everything else.
+const fraunces = Fraunces({
   subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
+  axes: ["SOFT", "opsz"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
-const instrument = Instrument_Serif({
+const figtree = Figtree({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument",
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
+  variable: "--font-figtree",
   display: "swap",
 });
 
 const description =
-  "Jane Wu is a data scientist finishing an MS at Carnegie Mellon. Recommender systems, LLM systems, experimentation and production ML.";
+  "Jane Wu is a data scientist finishing an MS at Carnegie Mellon. AI agents, LLM systems, recommender systems, experimentation and production ML.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jjjane-wu.github.io"),
@@ -41,19 +34,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f1ede3",
+  themeColor: "#d2f0ee",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${archivo.variable} ${instrument.variable} ${jetbrains.variable}`}
-    >
-      <body>
+    <html lang="en" className={`${fraunces.variable} ${figtree.variable}`}>
+      <body className="relative">
         <Nav />
         {children}
         <Footer />
+        <DepthGauge />
+        <Bubbles />
       </body>
     </html>
   );

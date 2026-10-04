@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { PageHeader, Row } from "@/components/ui";
+import { PageHeader, Row, Zone } from "@/components/ui";
 import { profile } from "@/content/site";
+import { FLOOR } from "@/lib/depth";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -9,16 +10,17 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main>
-      <PageHeader
-        index="05"
-        title="Contact"
-        lede="Email is the fastest way to reach me."
-        tape={{ right: "6%", top: "28%", width: "28%", height: "40%", transform: "rotate(-9deg)" }}
-      />
-      <Row href={`mailto:${profile.email}`} index="01" title={profile.email} aside="Email" />
-      <Row href={profile.linkedin} index="02" title="janewu-zichu-wu" aside="LinkedIn ↗" />
-      <Row href={profile.github} index="03" title="jjjane-wu" aside="GitHub ↗" />
-    </main>
+    <>
+      <PageHeader title="Contact" lede="Email is the fastest way to reach me." />
+      <main>
+        <Zone from={0} to={FLOOR}>
+          <ul>
+            <Row href={`mailto:${profile.email}`} title={profile.email} aside="Email" />
+            <Row href={profile.linkedin} title="janewu-zichu-wu" aside="LinkedIn ↗" />
+            <Row href={profile.github} title="jjjane-wu" aside="GitHub ↗" />
+          </ul>
+        </Zone>
+      </main>
+    </>
   );
 }

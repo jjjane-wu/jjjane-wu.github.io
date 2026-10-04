@@ -78,10 +78,10 @@ export const experience: Role[] = [
     dates: "Jun 2026 – Sep 2026",
     location: "New York, NY",
     gist: "A multi-agent due-diligence assistant that returns validated return metrics from any-format track records in about a minute instead of hours.",
-    tags: ["Azure OpenAI", "Kubernetes (AKS)", "LLM tool calling", "Validation"],
+    tags: ["AWS Bedrock", "Kubernetes (EKS)", "LLM tool calling", "PostgreSQL (pgvector)"],
     bullets: [
-      "Owned a **multi-agent due-diligence assistant** on **Azure OpenAI and Kubernetes (AKS)**, enabling the private-equity team to self-serve validated return metrics (MOIC, IRR, loss ratio) from fund managers' any-format track records in ==~1 minute== instead of hours",
-      "Implemented its **LLM tool-calling workflow** over multi-signal schema-inference, validation and return-analytics tools, guarded by confidence gates, **15 validation rules** that block publishing and analyst review; scoped PRD with non-technical investment analysts",
+      "Owned a **multi-agent due-diligence assistant** on **AWS Bedrock and Kubernetes (EKS)**, enabling the private-equity team to self-serve validated return metrics (MOIC, IRR, loss ratio) from fund managers' any-format track records in ==~1 minute== instead of hours",
+      "Implemented its **LLM tool-calling workflow** over schema-inference, validation and return-analytics tools on a **PostgreSQL (pgvector)** backend, guarded by confidence gates, **15 validation rules** and analyst review; scoped PRD with non-technical investment analysts",
     ],
   },
   {
@@ -108,12 +108,11 @@ export const experience: Role[] = [
     dates: "May 2025 – Nov 2025",
     location: "Beijing, China",
     gist: "LoRA fine-tuning and a LangChain RAG pipeline for a 42-class insurance text classifier, reaching 0.88 F1.",
-    tags: ["LoRA", "Qwen2.5-14B", "LangChain RAG", "ChromaDB", "Spark SQL", "Airflow"],
+    tags: ["LoRA", "Qwen2.5-14B", "LangChain RAG", "ChromaDB", "Spark", "Airflow", "Iceberg"],
     bullets: [
-      "Fine-tuned Qwen2.5-14B with **LoRA** on a single 24 GB GPU (INT8 quantization, gradient checkpointing), chosen over 7B and 72B on the accuracy-cost trade-off, reaching **84% accuracy** across 42 auto-insurance failure reasons",
+      "Fine-tuned Qwen2.5-14B with **LoRA**, chosen over 7B and 72B on the accuracy-cost trade-off, and fixed out-of-memory errors by cutting **GPU memory ~75%** (INT8 quantization, gradient checkpointing), reaching **84% accuracy** across 42 auto-insurance failure reasons",
       "Added a **LangChain RAG** pipeline (ChromaDB, few-shot examples) that lifted long-tail macro-F1 **12.5%** and the full system to ==0.88 F1== (57% over BERT), routing low-confidence labels to human review",
-      "Engineered and screened **124 features** from fintech data down to 51 powering the team's **XGBoost credit-risk** model",
-      "Automated daily **Spark SQL** pipelines (Airflow, Iceberg) over **2 TB** of user-behavior logs to power funnel-monitoring dashboards",
+      "Productionized **Spark** pipelines with Airflow to process **2+ TB** of daily user-behavior logs in Iceberg, powering funnel-monitoring dashboards and downstream credit risk model",
     ],
   },
   {
@@ -124,9 +123,9 @@ export const experience: Role[] = [
     dates: "Jun 2024 – Aug 2024",
     location: "Beijing, China",
     gist: "A factor back-testing framework on ~5,000 A-shares with a daily 9-factor review for portfolio managers.",
-    tags: ["Python", "Factor back-testing"],
+    tags: ["Python", "Factor back-testing", "Cross-sectional regression", "IC/IR"],
     bullets: [
-      "Built a **factor back-testing framework** on ==~5,000 A-shares== (2015–2024) and automated a daily 9-factor review for portfolio managers",
+      "Built a **factor back-testing framework** on ==~5,000 A-shares== (2015–2024) using daily **constrained cross-sectional regressions** for industry baselines, decile sorts and IC/IR, and automated a daily 9-factor review for portfolio managers",
     ],
   },
 ];
@@ -299,12 +298,12 @@ export const skills = [
   {
     group: "Data & Cloud",
     items:
-      "Spark, Hive, Hadoop, Airflow, Kafka, Flink, Snowflake, Databricks, DBT, AWS, GCP, Azure, Docker, Kubernetes",
+      "Spark, Hive, Hadoop, Airflow, Kafka, Flink, Snowflake, Databricks, DBT, AWS, GCP, Docker, Kubernetes",
   },
   {
     group: "Analytics & Tools",
     items:
-      "A/B Testing, Causal Inference, Time Series Forecasting, Tableau, Power BI, Excel, Figma, Git, Agile",
+      "A/B Testing, Causal Inference, Time Series Forecasting, Tableau, Power BI, Looker, Excel, Figma, Git, Agile",
   },
 ];
 
